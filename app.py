@@ -15,8 +15,6 @@ def cari():
     usia = int(request.form['usia'])
     kamar = int(request.form['kamar'])
     luas = int(request.form['luas'])
-    # model diimport menggunakan package joblib
-    model = joblib.load('../17SK_Learn/modelJoblib')
     harga = round(model.predict([[usia, kamar, luas]])[0], 2)
     return redirect(url_for('hasil', harga=harga))
 
@@ -31,4 +29,6 @@ def error(error):
     return render_template('error.html')
 
 if __name__ == "__main__":
+    # model diimport menggunakan package joblib
+    model = joblib.load('modelJoblib')
     app.run(debug=True)
